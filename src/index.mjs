@@ -19,6 +19,9 @@ const sendTraceRequestToLevo = async event => {
         if (cf.request.method !== "GET" && !reqContentType?.includes("json")) {
             return
         }
+        if (cf.request.uri.match(/\.(css|js|jpg|jpeg|png|svg|gif|ico|eot|woff|woff2|ttf|map|txt|pdf|mp4|webm|ogg|mp3|wav|zip|tar|gz|7z|rar|bz2|apk|exe|dmg|iso|img|swf|flv|avi|wmv|mov|mpeg)$/i)) {
+            return
+        }
         await dispatchEvent(cf)
     }
     catch (e) {
