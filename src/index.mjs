@@ -1,5 +1,5 @@
-const orgId = process.env.LEVO_ORG_ID
-const tracesEndpoint = process.env.LEVO_TRACES_ENDPOINT ?? "https://collector.levo.ai"
+const orgId = "LEVO_ORG_ID"
+const tracesEndpoint = "https://collector.levo.ai"
 
 const dispatchEvent = async cf => {
     await fetch(`${tracesEndpoint}/v1/cloudfront-event`, {
@@ -45,12 +45,12 @@ const sendTraceResponseToLevo = async event => {
 
 // For CloudFront origin-request events
 export const requestHandler = async event => {
-    await sendTraceRequestToLevo(event);
+    await sendTraceRequestToLevo(event)
     return event.Records[0].cf.request
 };
 
 // For CloudFront origin-response events
 export const responseHandler = async event => {
-    await sendTraceResponseToLevo(event);
+    await sendTraceResponseToLevo(event)
     return event.Records[0].cf.response
 };
