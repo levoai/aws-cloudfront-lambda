@@ -1,5 +1,5 @@
 const orgId = "LEVO_ORG_ID"
-const tracesEndpoint = "LEVO_SATELLITE_URL" ?? "https://collector.levo.ai"
+const tracesEndpoint = "LEVO_SATELLITE_URL"
 
 const dispatchEvent = async cf => {
     await fetch(`${tracesEndpoint}/v1/cloudfront-event`, {
