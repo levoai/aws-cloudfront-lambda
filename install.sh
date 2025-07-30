@@ -7,10 +7,19 @@ if [[ -z "${LEVO_ORG_ID}" ]]; then
     exit 1
 fi
 
+
+if [[ -z "${LEVO_SATELLITE_URL}" ]]; then
+    echo LEVO_SATELLITE_URL environment variable is not set.
+    echo Please set it to your Levo Satellite URL.
+    exit 1
+fi
+
 echo Adding the lambda code to a zip file...
 sed -i "s/LEVO_ORG_ID/$LEVO_ORG_ID/g" src/index.mjs
+sed -i "s/LEVO_SATELLITE_URL/$LEVO_SATELLITE_URL/g" src/index.mjs
 zip -j function.zip src/index.mjs
 sed -i "s/$LEVO_ORG_ID/LEVO_ORG_ID/g" src/index.mjs
+sed -i "s/$LEVO_SATELLITE_URL/LEVO_SATELLITE_URL/g" src/index.mjs
 echo
 
 echo Creating a role for the lambda functions...
